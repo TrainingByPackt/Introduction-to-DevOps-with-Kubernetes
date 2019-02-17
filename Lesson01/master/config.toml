@@ -1,0 +1,18 @@
+contentdir    = "content"
+layoutdir     = "layouts"
+publishdir    = "public"
+title = "DevOps Blog"
+canonifyurls  = true
+
+DefaultContentLanguage = "en"
+metaDataFormat = "yaml"
+pygmentsUseClasses = true
+pygmentCodeFences = true
+
+[Params]
+  dateFormat = "January 2, 2006"
+  commit = false
+  rss = false
+
+[Author]
+  name = "Onur Yilmaz"
