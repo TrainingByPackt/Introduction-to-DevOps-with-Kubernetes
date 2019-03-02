@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emptydir-pod
+spec:
+  containers:
+  - image: busybox
+    command:
+    - sleep
+    - "99999"
+    name: test-container-1
+    volumeMounts:
+    - mountPath: /test-folder
+      name: emptydir-volume
+  - image: busybox
+    command:
+    - sleep
+    - "99999"
+    name: test-container-2
+    volumeMounts:
+    - mountPath: /test-folder
+      name: emptydir-volume
+  volumes:
+  - name: emptydir-volume
+    emptyDir: {}
