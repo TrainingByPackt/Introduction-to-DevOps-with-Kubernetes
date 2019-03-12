@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lesson07-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: lesson07
+  template:
+    metadata:
+      labels:
+        app: lesson07
+    spec:
+      containers:
+      - image: suakbas/lesson07:v1
+        imagePullPolicy: Always
+        name: lesson07
+        resources:
+          requests:
+            memory: "500m"
+            cpu: "250m"
+            

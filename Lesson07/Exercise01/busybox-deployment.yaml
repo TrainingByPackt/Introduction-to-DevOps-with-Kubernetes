@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-deployment
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:1.29
+        command:
+          - sleep
+          - "99999"
+
