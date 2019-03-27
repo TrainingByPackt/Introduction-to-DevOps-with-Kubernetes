@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probe-pod
+spec:
+  containers:
+  - name: test
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - touch /healthy; touch /ready; sleep 20; rm -rf /healthy /ready; sleep 100
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /healthy
+      initialDelaySeconds: 3
+      periodSeconds: 5
+    readinessProbe:
+      exec:
+        command:
+        - cat
+        - /ready
+      initialDelaySeconds: 3
+      periodSeconds: 5
+

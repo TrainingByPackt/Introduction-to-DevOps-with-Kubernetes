@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+spec:
+  containers:
+  - name: app
+    image: suakbas/lesson08:v1
+    imagePullPolicy: Always
+    env:
+      - name: LOG_LEVEL
+        valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: log-level
+      - name: ENABLE_CONNECTION
+        valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: enable-connection
