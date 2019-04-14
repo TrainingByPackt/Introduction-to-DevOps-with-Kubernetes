@@ -1,0 +1,13 @@
+receivers:
+- name: "slack"
+  slack_configs:
+  - channel: "devops"
+    send_resolved: true
+    api_url: "https://hooks.slack.com/services/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"
+    title: "{{ .CommonAnnotations.description }}"
+    text: "Description: {{ .CommonAnnotations.description }}"
+route:
+  routes:
+  - match:
+      alertname: TestPodNotRunning
+    receiver: "slack"

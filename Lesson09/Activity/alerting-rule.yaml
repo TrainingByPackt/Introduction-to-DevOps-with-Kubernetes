@@ -1,0 +1,11 @@
+groups:
+  - name: test-pod-not-running-rule
+    rules:
+    - alert: TestPodNotRunning
+      expr: (kube_pod_container_status_running { namespace="lesson-9", container="test" } == 0)
+      for: 30s
+      labels:
+        severity: critical
+      annotations:
+        description: "{{$labels.namespace}}/{{$labels.pod}} is not running"
+        summary: "{{$labels.pod}} is not running"
