@@ -1,0 +1,35 @@
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2019-03-20T09:35:57Z
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: 2019-03-20T09:36:03Z
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: 2019-03-20T09:35:56Z
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://9c020c544611fd5c2be4f42bbd89f65934fd8d9e6e14ab32d5a9a517a5fee717
+    image: suakbas/lesson08:v1
+    lastState: {}
+    name: test
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: 2019-03-20T09:36:03Z
+  hostIP: 10.156.0.3
+  phase: Running
+  podIP: 10.44.0.30
+  qosClass: Burstable
+  startTime: 2019-03-20T09:35:57Z
+Events:
+    FirstSeen	LastSeen	Count	From			        SubobjectPath	Type		Reason			    Message
+    ---------	--------	-----	----			        -------------	--------	------			    -------
+    1m		    48s		    7	    {default-scheduler }			        Warning		FailedScheduling	pod (nginx-deployment-1370807587-fz9sd) failed to fit in any node
+  fit failure on node (kubernetes-node-6ta5): Node didn't have enough resource: CPU, requested: 1000, used: 1420, capacity: 2000
+  fit failure on node (kubernetes-node-wul5): Node didn't have enough resource: CPU, requested: 1000, used: 1100, capacity: 2000
