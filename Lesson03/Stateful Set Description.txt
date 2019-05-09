@@ -1,0 +1,52 @@
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: wordpress-database
+spec:
+  selector:
+    matchLabels:
+      app: blog
+  serviceName: "blog"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: blog 
+    spec:
+      containers:
+      - name: database
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootPassword
+        - name: MYSQL_DATABASE
+          value: database
+        - name: MYSQL_USER
+          value: user
+        - name: MYSQL_PASSWORD
+          value: password          
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+      - name: blog
+        image: wordpress:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: 127.0.0.1:3306
+        - name: WORDPRESS_DB_NAME
+          value: database
+        - name: WORDPRESS_DB_USER
+          value: user
+        - name: WORDPRESS_DB_PASSWORD
+          value: password  
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      resources:
+        requests:
+          storage: 1Gi
